@@ -1,0 +1,30 @@
+html {
+  --component-color: #6f60ab;
+}
+
+body {
+  background:
+    url("noise.png"),
+    linear-gradient(to bottom, #443d71 0%, #443a66 15%, #22254b 100%);
+  min-height: 100vh;
+  min-width: 100vw;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  background-repeat: none;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.layout {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: auto;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}

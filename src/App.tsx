@@ -1,9 +1,13 @@
-
-import React from 'react'
+import "./App.css" 
+import LocationList from "./components/LocationList"
+import WeatherInformation from "./components/WeatherInformation"
 
 const App = () => {
   return (
-    <div>App</div>
+    <div className="layout">
+      <WeatherInformation />
+      <LocationList />
+    </div>
   )
 }
 
