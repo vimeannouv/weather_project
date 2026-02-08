@@ -1,16 +1,18 @@
 .layout {
     height: 100vh;
-    max-width: 100px;
     width: 100%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 20px;
+    padding-top: 20px;
 }
-
+    
 .display {
-    background-color: color-mix(in srgb, var(--component-color), transparent 65%);
+    --transparency: 65%;
+    background-color: color-mix(in srgb, var(--component-color), transparent var(--transparency));
     border-radius: 20px;
-    height: 90%;
-    width: 90%;
+    height: 100%;
+    width: 100%;
 }

@@ -1,4 +1,5 @@
 import "./App.css" 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import LocationList from "./components/LocationList"
 import WeatherInformation from "./components/WeatherInformation"
 

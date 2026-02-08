@@ -1,5 +1,6 @@
 html {
   --component-color: #6f60ab;
+   overflow-y: hidden;
 }
 
 body {
@@ -17,14 +18,16 @@ body {
 }
 
 .layout {
-  width: 100%;
-  height: 100%;
+  width: 100dvw;
+  height: 100dvh;
   margin: 0px;
-  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
   overflow-x: auto;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
+  gap: 20px;
 }
