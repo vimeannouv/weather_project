@@ -1,13 +1,11 @@
 import "./App.css" 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import LocationList from "./components/LocationList"
-import WeatherInformation from "./components/WeatherInformation"
+import TopBar from "./components/TopBar"
 
 const App = () => {
   return (
     <div className="layout">
-      <WeatherInformation />
-      <LocationList />
+      <TopBar />
     </div>
   )
 }
