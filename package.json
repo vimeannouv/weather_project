@@ -16,6 +16,7 @@
     "bootstrap": "^5.3.8",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-spring": "^10.0.3",
     "sass": "^1.97.3"
   },
   "devDependencies": {

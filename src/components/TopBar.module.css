@@ -1,13 +1,13 @@
 .topBar {
-    composes: layout from "./shared/shared.module.css";
-    background-color: #6e6e6e75;
-    height: 60px;
-    width: 100vw;
-    flex-direction: row;
+  composes: layout from "./shared/shared.module.css";
+  background-color: #6e6e6e75;
+  max-height: 60px;
+  width: 100vw;
+  flex-direction: row;
 }
 
-.locationInput{
-    max-width: 500px;
-    width: 100%;
-    margin-left: 10px;
+.locationInput {
+  max-width: 500px;
+  width: 100%;
+  margin-left: 10px;
 }

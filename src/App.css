@@ -12,14 +12,13 @@ body {
   background-repeat: none;
   background-size: cover;
   background-attachment: fixed;
+  overflow: hidden;
 }
 
 .layout {
   width: 100dvw;
   height: 100dvh;
   margin: 0px;
-  padding-left: 20px;
-  padding-right: 20px;
   overflow-x: auto;
   box-sizing: border-box;
   display: flex;
