@@ -4,8 +4,15 @@ import TopBar from "./components/TopBar";
 import LoadingScreen from "./components/LoadingScreen";
 import { useEffect, useState, type KeyboardEvent } from "react";
 
+interface WeatherState {
+  temperature?: number,
+  weatherCode?: number,
+}
+
 const App = () => {
   const [isLoading, setLoading] = useState(false);
+  const [currentWeather, setCurrentWeather] = useState<WeatherState>({})
+  const [hourlyWeather, setHourlyWeather] = useState<WeatherState[]>([])
   const [location, setLocation] = useState({
     latitude: null,
     longitude: null,
@@ -13,14 +20,27 @@ const App = () => {
     cityName: null,
   });
 
-  const fetchWeather = (latitude: number, longitude: number) => {};
+  const fetchWeather = async (latitude: string, longitude: string) => {
+    const apiEndpoint = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,weather_code&current=temperature_2m,weather_code`;
+    try {
+      const data = await fetch(apiEndpoint);
+      if (!data.ok)
+        return new Error(
+          `open meteo failed to fetch from coords : (${latitude}, ${longitude})`,
+        );
+      const info = await data.json();
+      return info;
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const fetchCurrentLocation = async () => {
     const apiEndpoint = "https://geoapi.info/api/geo";
     try {
       const data = await fetch(apiEndpoint);
 
-      if (!data.ok) return new Error("current location response is invalid");
+      if (!data.ok) throw new Error("current location response is invalid");
       const info = await data.json();
       return info.location;
     } catch (err) {
@@ -32,7 +52,7 @@ const App = () => {
     const apiEndpoint = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(cityName)}`;
     try {
       const data = await fetch(apiEndpoint);
-      if (!data.ok) return new Error("input location response is invalid");
+      if (!data.ok) throw new Error("input location response is invalid");
       const info = await data.json();
       return info;
     } catch (err) {
@@ -73,13 +93,28 @@ const App = () => {
   };
 
   // effects //
+
   useEffect(() => {
     console.log("#~~~~~~~~~~\n", location, "\n#~~~~~~~~~~\n");
-    const lat = location.latitude;
-    const long = location.longitude;
+    const lat = location.latitude as unknown as string;
+    const long = location.longitude as unknown as string;
+    if (!lat || !long) return console.log("latitude and longitude are null.");
+    fetchWeather(lat, long).then((info) => {
+
+      // current weather
+      const currentWeather = info.current
+      const currentTemp = currentWeather.temperature_2m 
+      const weatherCode = currentWeather.weather_code
+      setCurrentWeather({
+        temperature: currentTemp,
+        weatherCode: weatherCode
+      })
+
+      // hourly temp
+    });
   }, [location]);
 
-  // on init //
+  // get city closest to client
   useEffect(() => {
     setLoading(true);
     fetchCurrentLocation().then((location) => {
@@ -105,7 +140,10 @@ const App = () => {
       {isLoading ? (
         <LoadingScreen />
       ) : (
-        <p>{location.cityName + " " + location.countryName}</p>
+        <div>
+          <p>{location.cityName + " " + location.countryName}</p>
+          <p>{currentWeather.temperature}</p>
+        </div>
       )}
     </div>
   );
