@@ -4,7 +4,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface Props {
-  onSearchEnter?: (ev: KeyboardEvent) => void;
+  onSearchEnter?: (ev: KeyboardEvent<HTMLInputElement>) => void;
 }
 
 const TopBar = ({ onSearchEnter }: Props) => {
@@ -24,9 +24,8 @@ const TopBar = ({ onSearchEnter }: Props) => {
             onKeyDown={(ev) => {
               if (ev.key == "Enter") {
                 if (onSearchEnter) {
-                    onSearchEnter(ev)
-              }
-
+                  onSearchEnter(ev);
+                }
               }
             }}
           />
