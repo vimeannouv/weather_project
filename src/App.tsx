@@ -5,14 +5,14 @@ import LoadingScreen from "./components/LoadingScreen";
 import { useEffect, useState, type KeyboardEvent } from "react";
 
 interface WeatherState {
-  temperature?: number,
-  weatherCode?: number,
+  temperature?: number;
+  weatherCode?: number;
 }
 
 const App = () => {
   const [isLoading, setLoading] = useState(false);
-  const [currentWeather, setCurrentWeather] = useState<WeatherState>({})
-  const [hourlyWeather, setHourlyWeather] = useState<WeatherState[]>([])
+  const [currentWeather, setCurrentWeather] = useState<WeatherState>({});
+  const [hourlyWeather, setHourlyWeather] = useState<WeatherState[]>([]);
   const [location, setLocation] = useState({
     latitude: null,
     longitude: null,
@@ -84,33 +84,40 @@ const App = () => {
           cityName: cityName,
           countryName: countryName,
         });
-        setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
         setLoading(false);
+        console.log(err);
       });
   };
 
   // effects //
 
+  // setting the states after new location has been entttered
   useEffect(() => {
     console.log("#~~~~~~~~~~\n", location, "\n#~~~~~~~~~~\n");
     const lat = location.latitude as unknown as string;
     const long = location.longitude as unknown as string;
     if (!lat || !long) return console.log("latitude and longitude are null.");
     fetchWeather(lat, long).then((info) => {
-
       // current weather
-      const currentWeather = info.current
-      const currentTemp = currentWeather.temperature_2m 
-      const weatherCode = currentWeather.weather_code
+      const currentWeather = info.current;
+      const currentTemp = currentWeather.temperature_2m;
+      const weatherCode = currentWeather.weather_code;
       setCurrentWeather({
         temperature: currentTemp,
-        weatherCode: weatherCode
-      })
+        weatherCode: weatherCode,
+      });
 
       // hourly temp
+      const hourlyWeather = info.hourly 
+      const hourlyTime = hourlyWeather.time
+
+      for (const time of hourlyTime) {
+        console.log(time)
+      }
+
+      setLoading(false);
     });
   }, [location]);
 
@@ -129,7 +136,6 @@ const App = () => {
         countryName: countryName,
         cityName: cityName,
       });
-      setLoading(false);
     });
   }, []);
 
