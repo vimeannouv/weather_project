@@ -1,0 +1,33 @@
+.layout {
+    composes: layout from "./shared/shared.module.css";
+    display: flex;
+    padding: 10px;
+    max-height: 500px;
+}
+
+.display {
+    composes: display from "./shared/shared.module.css";
+    display: flex;
+    overflow: auto;
+}
+
+.scrollContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    align-items: center;
+    padding: 10px;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.scrollContainer > li {
+    flex: 0 0 auto; 
+}
+
+

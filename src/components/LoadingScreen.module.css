@@ -1,7 +1,6 @@
 .layout {
     composes: layout from "./shared/shared.module.css";
     width: 40%;
-    transition: opacity .5 ease-in-out;
 }
 
 .appear {

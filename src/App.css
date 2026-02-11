@@ -1,6 +1,6 @@
 html {
-  --component-color: #6f60ab;
    overflow-y: hidden;
+   overflow-x: hidden;
 }
 
 body {
@@ -15,6 +15,18 @@ body {
   overflow: hidden;
 }
 
+h2 {
+  font-size: 40px;
+}
+
+h1 {
+  font-size: 60px;
+}
+
+p {
+  font-size: 20px;
+}
+
 .layout {
   width: 100dvw;
   height: 100dvh;
@@ -26,4 +38,28 @@ body {
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
+}
+
+.country-name {
+  margin-bottom: 50px;
+}
+
+.current-temp {
+  font-size: 100px;
+  font-weight: bold;
+}
+
+.current-weather-code-display {
+  display: flex;
+  flex-direction: row;
+}
+
+.celcius {
+  font-size: 35px;
+  vertical-align: center;
+  padding-top: 18px;
+}
+
+.time, .temperature, .weatherCode {
+  color: aliceblue;
 }

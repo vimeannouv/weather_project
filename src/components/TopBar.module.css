@@ -1,6 +1,6 @@
 .topBar {
   composes: layout from "./shared/shared.module.css";
-  background-color: #6e6e6e75;
+  background-color: #4b4b4b75;
   max-height: 60px;
   width: 100vw;
   flex-direction: row;
