@@ -2,7 +2,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import TopBar from "./components/TopBar";
 import LoadingScreen from "./components/LoadingScreen";
-import React, { useEffect, useState, type KeyboardEvent } from "react";
+import { useEffect, useState, type KeyboardEvent } from "react";
 import WeatherCodeImage from "./components/WeatherCodeImage";
 import CurrentWeather from "./components/CurrentWeather";
 import HoursList from "./components/HoursList";
