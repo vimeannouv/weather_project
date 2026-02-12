@@ -42,6 +42,8 @@ const weatherMap: Record<string, { icon: JSX.Element; label: string }> = {
   "99": { icon: <WiThunderstorm />, label: "Thunderstorm w/ heavy hail" }
 };
 
+
+// these are written by me
 const WeatherCodeImage = ({ weatherCode, hideMessage = false }: Props) => {
   if (!weatherCode) {
     weatherCode = 1;
