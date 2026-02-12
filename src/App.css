@@ -38,6 +38,7 @@ p {
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
+  overflow: hidden;
 }
 
 .country-name {
