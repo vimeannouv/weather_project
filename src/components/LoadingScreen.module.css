@@ -2,7 +2,3 @@
     composes: layout from "./shared/shared.module.css";
     width: 40%;
 }
-
-.appear {
-    opacity: 1%
-}

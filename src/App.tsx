@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import TopBar from "./components/TopBar";
 import LoadingScreen from "./components/LoadingScreen";
 import React, { useEffect, useState, type KeyboardEvent } from "react";
-import WeatherCodeImage from "./components/weatherCodeImage";
+import WeatherCodeImage from "./components/WeatherCodeImage";
 import CurrentWeather from "./components/CurrentWeather";
 import HoursList from "./components/HoursList";
 import WeatherHour from "./components/WeatherHour";
@@ -249,7 +249,7 @@ const App = () => {
                         <h3 className="time">{item.time}</h3>
                       </div>
                       <div>
-                        <h2 className="weatherCode"><WeatherCodeImage/></h2>
+                        <h2 className="weatherCode"><WeatherCodeImage weatherCode={item.weatherCode} hideMessage={true} /></h2>
                         <h3 className="temperature">
                           {item.temperature + celciusFont}
                         </h3>

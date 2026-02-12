@@ -1,7 +1,9 @@
 .display {
     composes: display from "./shared/shared.module.css";
-    width: 300px;
+    width: auto;
+    padding: 20px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     --color: black  
 }
