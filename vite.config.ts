@@ -5,5 +5,5 @@ import react from "@vitejs/plugin-react";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), patchCssModules()],
-  base: "https://github.com/vimeannouv/weather_project/"
+  base: "https://vimeannouv.github.io/weather_project/"
 });
