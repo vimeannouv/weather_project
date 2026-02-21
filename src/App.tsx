@@ -8,7 +8,7 @@ import CurrentWeather from "./components/CurrentWeather";
 import HoursList from "./components/HoursList";
 import WeatherHour from "./components/WeatherHour";
 import shared from "./components/shared/shared.module.css";
-import { useSpring, animated, Spring } from "react-spring";
+import { useSpring, animated } from "@react-spring/web";
 
 // imgs
 import sunrise from "./assets/sun-rise.jpg";
