@@ -10,12 +10,13 @@
     composes: display from "./shared/shared.module.css";
     display: flex;
     overflow: auto;
+    --transparency: 1
 }
 
 .scrollContainer {
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 25px;
     padding: 0px;
     margin: 0px;
     list-style: none;
@@ -27,7 +28,8 @@
     width: 100%;
 }
 
-.scrollContainer > li {
+.scrollContainer > li { 
+    /* direct child li */
     flex: 0 0 auto; 
 }
 

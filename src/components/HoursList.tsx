@@ -1,17 +1,17 @@
 import React from "react";
 import styles from "./HoursList.module.css";
-
+import { type SpringValues, animated } from "react-spring";
 interface Props {
   children?: React.ReactNode;
 }
 
-const HoursList = ({ children }: Props) => {
+const HoursList = ({ children}: Props) => {
   return (
-    <div className={styles.layout}>
+    <animated.div className={`${styles.layout}`}>
       <div className={styles.display}>
         <ul className={styles.scrollContainer}>{children}</ul>
       </div>
-    </div>
+    </animated.div>
   );
 };
 

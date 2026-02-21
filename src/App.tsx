@@ -7,8 +7,8 @@ import WeatherCodeImage from "./components/WeatherCodeImage";
 import CurrentWeather from "./components/CurrentWeather";
 import HoursList from "./components/HoursList";
 import WeatherHour from "./components/WeatherHour";
-
 import shared from "./components/shared/shared.module.css";
+import { useSpring, animated, Spring } from "react-spring";
 
 // imgs
 import sunrise from "./assets/sun-rise.jpg";
@@ -97,7 +97,7 @@ const App = () => {
   };
 
   // events //
-  const onSearchInputEntered = (ev: KeyboardEvent<HTMLInputElement>) => {
+  const onSearchInputEntered = (ev: KeyboardEvent<HTMLInputElement>, failed: () => void) => {
     const inputValue = ev.currentTarget.value;
     const cityName = inputValue.trim();
     if (cityName.length <= 2) return;
@@ -124,12 +124,26 @@ const App = () => {
       .catch((err) => {
         setLoading(false);
         console.log(err);
+        failed()
       });
   };
 
+  // springs
+
+  const config = { friction: 8, tension: 100, mass: 0.5 };
+
+  const hoursListPopAnim = useSpring({
+    marginBottom: isLoading ? "-100px" : "0px",
+    config: config,
+  });
+
+  const currentWeatherPopAnim = useSpring({
+    marginLeft: isLoading ? "-100px" : "0px",
+    config: config,
+  });
   // effects //
 
-  // setting the states after new location has been entttered
+  // setting the states after new location has been entered
   useEffect(() => {
     console.log("#~~~~~~~~~~\n", location, "\n#~~~~~~~~~~\n");
     const lat = location.latitude as unknown as string;
@@ -143,7 +157,6 @@ const App = () => {
       const currentTemp = currentWeather.temperature_2m;
       const weatherCode = currentWeather.weather_code;
       const currentTime = currentWeather.time;
-
       setCurrentWeather({
         temperature: currentTemp,
         weatherCode: weatherCode,
@@ -221,40 +234,48 @@ const App = () => {
             }}>
             <CurrentWeather
               color={backgroundImg == sunrise ? "black" : "rgb(220, 229, 235)"}>
-              <h2 className="country-name">
-                {location.cityName + ", " + location.countryName}
-              </h2>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                }}>
-                <h1 className="current-temp">{currentWeather.temperature}</h1>
-                <span className="celcius">{celciusFont}</span>
-              </div>
-
-              <WeatherCodeImage weatherCode={currentWeather.weatherCode} />
+              <animated.div style={currentWeatherPopAnim}>
+                <h2 className="country-name">
+                  {location.cityName + ", " + location.countryName}
+                </h2>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                  }}>
+                  <h1 className="current-temp">{currentWeather.temperature}</h1>
+                  <span className="celcius">{celciusFont}</span>
+                </div>
+                <WeatherCodeImage weatherCode={currentWeather.weatherCode} />
+              </animated.div>
             </CurrentWeather>
             <HoursList>
               {hourlyWeather.map((item, i) => {
                 return (
                   <WeatherHour key={i}>
-                    <div style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "space-between",
-                      height: "100%"
-                    }}>
+                    <animated.div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        height: "100%",
+                        ...hoursListPopAnim,
+                      }}>
                       <div aria-label="time">
                         <h3 className="time">{item.time}</h3>
                       </div>
                       <div>
-                        <h2 className="weatherCode"><WeatherCodeImage weatherCode={item.weatherCode} hideMessage={true} /></h2>
+                        <h2 className="weatherCode">
+                          <WeatherCodeImage
+                            weatherCode={item.weatherCode}
+                            hideMessage={true}
+                          />
+                        </h2>
                         <h3 className="temperature">
                           {item.temperature + celciusFont}
                         </h3>
                       </div>
-                    </div>
+                    </animated.div>
                   </WeatherHour>
                 );
               })}

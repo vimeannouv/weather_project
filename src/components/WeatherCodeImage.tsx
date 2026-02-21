@@ -10,7 +10,7 @@ interface Props {
   hideMessage?: boolean
 }
 
-// got this from ai --> ai handles the automation so my life is easier.
+// got this from ai
 const weatherMap: Record<string, { icon: JSX.Element; label: string }> = {
   "0": { icon: <WiDaySunny />, label: "Clear skies" },
   "1": { icon: <WiDaySunny />, label: "Mainly clear" },
